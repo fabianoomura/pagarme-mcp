@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "pagarme": {
+      "command": "python",
+      "args": ["C:/Users/mooui/mcp-servers/pagarme-mcp/server.py"],
+      "env": {
+        "PAGARME_SECRET_KEY": "sk_sua_chave_aqui",
+        "SHOPIFY_ACCESS_TOKEN": "shpat_sua_chave_aqui",
+        "SHOPIFY_SHOP_URL": "sua-loja.myshopify.com",
+        "SHOPIFY_API_VERSION": "2024-01",
+        "PAGARME_DB_PATH": "./pagarme.db"
+      }
+    }
+  }
+}
