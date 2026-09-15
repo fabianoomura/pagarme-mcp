@@ -2,6 +2,14 @@
 
 MCP Server para financeiro Pagar.me v5 + Shopify. Consulta recebiveis, fluxo de caixa, conciliacao e dados de pedidos.
 
+## Escopo definido para o Brain
+
+**Pagar.me é somente consulta.** Reembolsos e antecipações são informações consultadas,
+não operações executadas pelo conector. A conciliação analisa dados; as rotinas de
+sincronização atualizam apenas o SQLite local com dados das APIs. Não adicionar
+movimentações financeiras a este escopo. Limites de escrita financeira do Brain
+se aplicam aos conectores que efetivamente executam essas operações.
+
 ## Tools Disponiveis
 
 | Tool | Descricao |
