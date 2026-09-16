@@ -32,10 +32,9 @@ def _fluxo_caixa(inicio: str, fim: str) -> str:
                      THEN amount ELSE 0 END) AS saidas,
             SUM(fee) AS taxas,
             SUM(anticipation_fee) AS antecipacao,
-            SUM(CASE WHEN type = 'credit' THEN amount ELSE 0 END)
-                - SUM(CASE WHEN type IN ('refund','chargeback','chargeback_refund')
-                           THEN amount ELSE 0 END)
-                - SUM(fee) - SUM(anticipation_fee) AS liquido,
+            -- amount de refund/chargeback ja vem NEGATIVO da Pagar.me: somar com sinal,
+            -- nao subtrair a coluna saidas (isso devolvia o estorno em vez de abater).
+            SUM(amount) - SUM(fee) - SUM(anticipation_fee) AS liquido,
             COUNT(*) AS qtd_operacoes
         FROM payables
         WHERE date(payment_date) BETWEEN ? AND ?
