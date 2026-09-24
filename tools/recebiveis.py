@@ -162,7 +162,9 @@ def _resumo_financeiro(inicio: str, fim: str) -> str:
     saidas = geral["total_saidas"] or 0
     taxas = geral["total_taxas"] or 0
     antecip = geral["total_antecipacao"] or 0
-    liquido = entradas - saidas - taxas - antecip
+    # saidas (refund/chargeback) ja vem NEGATIVO da Pagar.me: somar com sinal,
+    # nao subtrair (isso devolvia o estorno em vez de abater — mesmo bug do fluxo_caixa).
+    liquido = entradas + saidas - taxas - antecip
 
     lines = [
         f"Resumo Financeiro — {inicio} a {fim}\n",
